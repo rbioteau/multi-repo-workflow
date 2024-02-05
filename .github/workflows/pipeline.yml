@@ -1,0 +1,22 @@
+name: Test pipeline
+
+on:
+  workflow_dispatch: 
+
+jobs:
+  bonita-engine:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: bonitasoft/bonita-engine-sp
+          ref: dev
+          path: bonita-engine-sp
+          token: ${{ secrets.PAT_GITHUB }}
+      - run: |
+          cd bonita-engine-sp
+          ./gradlew build -x test 
+
+    
+        
+        
